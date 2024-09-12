@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Avatar from 'react-avatar'
 import { CiSearch, CiVideoOn } from 'react-icons/ci'
 import { GiHamburgerMenu } from 'react-icons/gi'

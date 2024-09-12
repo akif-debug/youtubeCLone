@@ -106,7 +106,7 @@ const sidebarItem = [
 const Sidebar = () => {
     const open = useSelector((store) => store.app.open)
     return (
-        <div className='px-3 ml-4 relative left-0 w-auto h-[calc(100vh-4.625rem)] bg-white overflow-y-scroll overflow-x-hidden'> 
+        <div className={`${open ? "w-[20%]" : "w-[5%]"} px-3 ml-4 relative left-0 h-[calc(100vh-4.625rem)] bg-white overflow-y-scroll overflow-x-hidden`}>
             {sidebarItem.map((item, index) => {
                 return (
                     <div key={index} className='flex my-3'>
