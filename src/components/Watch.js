@@ -8,11 +8,16 @@ import { PiShareFatLight } from 'react-icons/pi';
 import { GoDownload } from 'react-icons/go';
 import { BsThreeDotsVertical } from 'react-icons/bs';
 import { LuSendHorizonal } from 'react-icons/lu';
+import LiveChat from './LiveChat';
+import { useDispatch } from 'react-redux';
+import { setMessage } from '../utils/chatSlice';
 
 const Watch = () => {
+    const [input, setInput] = useState('')
     const [singleVideo, setSingleVideo] = useState(null)
     const [searchParams] = useSearchParams()
     const videoId = searchParams.get('v')
+    const dispatch = useDispatch()
 
     const getSingleVideo = async () => {
         try {
@@ -23,6 +28,15 @@ const Watch = () => {
             console.log(error)
         }
     }
+
+    const sendMessage = () => {
+        dispatch(setMessage({
+            name: "patel",
+            message: input
+        }))
+        setInput('')
+    }
+
     useEffect(() => {
         getSingleVideo()
     }, [])
@@ -68,17 +82,17 @@ const Watch = () => {
                         <h1>Top Chat</h1>
                         <BsThreeDotsVertical />
                     </div>
-                    <div className='overflow-y-auto h-[28rem]'>
-                        chats
+                    <div className='overflow-y-auto h-[28rem] flex flex-col-reverse'>
+                        <LiveChat />
                     </div>
                     <div className='border-t flex items-center justify-between p-2'>
                         <div className='flex items-center justify-between w-[100%]'>
                             <div>
                                 <Avatar src='https://images.sftcdn.net/images/t_app-icon-m/p/c34c15bf-054c-4287-8c2c-73cef14107c2/3273691428/boys-dp-boy-profile-pictures-logo' size={35} round={true} />
                             </div>
-                            <input className='border-b border-gray-300 outline-none' type="text" placeholder='Send message..' />
+                            <input value={input} onChange={(e) => setInput(e.target.value)} className='border-b border-gray-300 outline-none' type="text" placeholder='Send message..' />
                             <div className='bg-gray-200 cursor-pointer p-2 rounded-full text-center'>
-                                <LuSendHorizonal size={"18px"} />
+                                <LuSendHorizonal size={"18px"} onClick={sendMessage} />
                             </div>
                         </div>
                     </div>
