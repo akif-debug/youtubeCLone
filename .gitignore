@@ -3,7 +3,7 @@
 # dependencies
 /node_modules
 /.pnp
-./constant/youtube.js
+./src/constant/youtube.js
 .pnp.js
 
 # testing
